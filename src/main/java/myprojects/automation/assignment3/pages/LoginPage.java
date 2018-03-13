@@ -15,10 +15,12 @@ public class LoginPage {
     private By loginBtn = By.name ("submitLogin");
 
     public LoginPage(WebDriver webDriver) {
+
         this.webDriver = webDriver;
     }
 
     public void open() {
+
         webDriver.get(Properties.getBaseAdminUrl());
     }
 
@@ -27,10 +29,12 @@ public class LoginPage {
     }
 
     public void fillPasswordInput(String password) {
+
         webDriver.findElement(passInput).sendKeys(password);
     }
 
     public void clickLoginButton() {
+
         webDriver.findElement(loginBtn).click ();
     }
 }

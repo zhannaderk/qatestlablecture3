@@ -4,11 +4,9 @@ import myprojects.automation.assignment3.pages.CategoryPage;
 import myprojects.automation.assignment3.pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import java.util.concurrent.TimeUnit;
-
+import org.testng.Assert;
 
 /**
  * Contains main script actions that may be used in scripts.
@@ -44,13 +42,16 @@ public class GeneralActions {
      */
     public void createCategory(String categoryName) {
         CategoryPage categoryPage = new CategoryPage(driver);
-        waitForContentLoad(categoryPage.getCatalogItem());
-        categoryPage.clickOnCatalogItem();
-        waitForContentLoad(categoryPage.getCategorySubmenu());
-        categoryPage.clickOnCategoryItem();
-        waitForContentLoad(categoryPage.getAddCategory());
+        categoryPage.clickCategorySubmenu();
         categoryPage.clickOnAddCategoryButton();
-        categoryPage.createCategory(categoryName);
+        categoryPage.fillCategoryName(categoryName);
+        categoryPage.saveCategory();
+        Assert.assertTrue(ExpectedConditions.presenceOfElementLocated(categoryPage.getCreated()).apply(driver).isDisplayed());
+        categoryPage.fillCreatedCatName(categoryName);
+        categoryPage.clickSearchButton();
+        Assert.assertTrue(ExpectedConditions.textToBePresentInElementLocated(categoryPage.getTableBody(), categoryName).apply(driver));
+
+
     }
 
     /**

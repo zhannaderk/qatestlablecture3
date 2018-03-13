@@ -13,7 +13,7 @@ public class CreateCategoryTest extends BaseScript {
             driver = getConfiguredDriver();
             GeneralActions generalActions = new GeneralActions(driver);
             generalActions.login("webinar.test@gmail.com", "Xcg7299bnSmMuRLp9ITw");
-            generalActions.createCategory("äsia");
+            generalActions.createCategory("Category8080");
 
         } finally {
             if (driver != null) {
